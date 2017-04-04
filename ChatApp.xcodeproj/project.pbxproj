@@ -12,6 +12,9 @@
 		5535223E1E83C6DA0063EF84 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5535223D1E83C6DA0063EF84 /* User.swift */; };
 		5566AF1D1E920B6000472877 /* LoginController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5566AF1C1E920B6000472877 /* LoginController+handlers.swift */; };
 		5566AF201E92BA9F00472877 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5566AF1F1E92BA9F00472877 /* Extensions.swift */; };
+		5566AF221E93581A00472877 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5566AF211E93581A00472877 /* ChatLogController.swift */; };
+		5566AF241E938DED00472877 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5566AF231E938DED00472877 /* Message.swift */; };
+		5566AF271E9395F800472877 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5566AF261E9395F800472877 /* UserCell.swift */; };
 		55CA826A1E8239AD00132F08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CA82691E8239AD00132F08 /* AppDelegate.swift */; };
 		55CA826C1E8239AD00132F08 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CA826B1E8239AD00132F08 /* MessagesController.swift */; };
 		55CA826F1E8239AD00132F08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55CA826D1E8239AD00132F08 /* Main.storyboard */; };
@@ -28,6 +31,9 @@
 		5535223D1E83C6DA0063EF84 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5566AF1C1E920B6000472877 /* LoginController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginController+handlers.swift"; sourceTree = "<group>"; };
 		5566AF1F1E92BA9F00472877 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		5566AF211E93581A00472877 /* ChatLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
+		5566AF231E938DED00472877 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		5566AF261E9395F800472877 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		55CA82661E8239AD00132F08 /* ChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55CA82691E8239AD00132F08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55CA826B1E8239AD00132F08 /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
@@ -65,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				5535223D1E83C6DA0063EF84 /* User.swift */,
+				5566AF231E938DED00472877 /* Message.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -75,6 +82,14 @@
 				5566AF1F1E92BA9F00472877 /* Extensions.swift */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		5566AF251E9395B100472877 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5566AF261E9395F800472877 /* UserCell.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		55CA825D1E8239AC00132F08 = {
@@ -98,10 +113,11 @@
 		55CA82681E8239AD00132F08 /* ChatApp */ = {
 			isa = PBXGroup;
 			children = (
+				5566AF251E9395B100472877 /* View */,
 				5566AF1E1E92BA8700472877 /* Helpers */,
 				5535223C1E83C6B30063EF84 /* Model */,
-				55CA82691E8239AD00132F08 /* AppDelegate.swift */,
 				55CA827B1E823C0B00132F08 /* Controller */,
+				55CA82691E8239AD00132F08 /* AppDelegate.swift */,
 				55CA826D1E8239AD00132F08 /* Main.storyboard */,
 				55CA82721E8239AD00132F08 /* LaunchScreen.storyboard */,
 				5535223A1E83C1650063EF84 /* Assets.xcassets */,
@@ -118,6 +134,7 @@
 				55CA826B1E8239AD00132F08 /* MessagesController.swift */,
 				553522381E83BE920063EF84 /* NewMessageController.swift */,
 				5566AF1C1E920B6000472877 /* LoginController+handlers.swift */,
+				5566AF211E93581A00472877 /* ChatLogController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -255,12 +272,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5566AF221E93581A00472877 /* ChatLogController.swift in Sources */,
 				553522391E83BE920063EF84 /* NewMessageController.swift in Sources */,
 				55CA826C1E8239AD00132F08 /* MessagesController.swift in Sources */,
+				5566AF241E938DED00472877 /* Message.swift in Sources */,
 				5566AF1D1E920B6000472877 /* LoginController+handlers.swift in Sources */,
 				55CA827D1E823C5400132F08 /* LoginController.swift in Sources */,
 				5535223E1E83C6DA0063EF84 /* User.swift in Sources */,
 				55CA826A1E8239AD00132F08 /* AppDelegate.swift in Sources */,
+				5566AF271E9395F800472877 /* UserCell.swift in Sources */,
 				5566AF201E92BA9F00472877 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
