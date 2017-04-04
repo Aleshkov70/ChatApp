@@ -11,6 +11,8 @@ import Firebase
 
 class LoginController: UIViewController {
     
+    var messagesController: MessagesController?
+    
     let inputsContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
@@ -69,13 +71,17 @@ class LoginController: UIViewController {
         return textField
     }()
     
-    let profileImageView: UIImageView = {
+    lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "Kiwi Bird-80")
+        imageView.image = UIImage(named: "pulpFiction")
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
+        
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
+    
     
     let loginRegisterSegmentedControl: UISegmentedControl = {
         let sc = UISegmentedControl(items: ["Login", "Register"])
@@ -85,7 +91,7 @@ class LoginController: UIViewController {
         sc.addTarget(self, action: #selector(handleLoginRegisterChange), for: .valueChanged)
         return sc
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -111,7 +117,7 @@ class LoginController: UIViewController {
         profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         profileImageView.bottomAnchor.constraint(equalTo: loginRegisterSegmentedControl.topAnchor, constant: -12).isActive = true
         profileImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 140).isActive = true
     }
     
     var inputsContainerViewHeightAnchor: NSLayoutConstraint?
@@ -212,43 +218,11 @@ class LoginController: UIViewController {
                 return
             }
             // successfull login
+            
+            self.messagesController?.fetchUserAndSetupNavBarTitle() 
             self.dismiss(animated: true, completion: nil)
         })
     }
-    
-    func handleRegister() {
-        guard let email = emailTextField.text, let password = passwordTextField.text, let name = nameTextField.text else {
-            print("Заполните форму")
-            return
-        }
-        
-        
-        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (FIRUser, error) in
-            if error != nil {
-                print(error!)
-                return
-            }
-            
-            guard let uid = FIRUser?.uid else {
-                return
-            }
-            
-            
-            // after success auth user
-            let ref = FIRDatabase.database().reference(fromURL: "https://chatapp-10f1b.firebaseio.com/")
-            let userReference = ref.child("users").child(uid)
-            let values = ["name": name, "email": email]
-            userReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
-                if err != nil {
-                    print(err!)
-                    return
-                }
-                print("Saved user sucessfully into Firebase DB")
-                self.dismiss(animated: true, completion: nil)
-            })
-        })
-    }
-    
 }
 
 extension UIColor {
